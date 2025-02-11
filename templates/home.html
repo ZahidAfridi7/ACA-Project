@@ -1,0 +1,201 @@
+{% extends "base.html" %}
+{% block home_status %}active{% endblock home_status %}
+
+{% load static %}
+
+{% block slider %}
+
+    <!-- slider section -->
+    <section class="slider_section ">
+      <div id="customCarousel1" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="container ">
+              <div class="row">
+                <div class="col-md-7 col-lg-6 ">
+                  <div class="detail-box">
+                    <h1>
+                      Afridi Cricket Academy
+                    </h1>
+                    <p>
+                      Welcome to Afridi Cricket Academy! We are committed to developing the next generation of cricket stars through expert coaching and personalized training. Whether you're just starting or aiming for professional levels, our academy provides the perfect environment to enhance your skills and achieve your cricketing goals. Join us and take your game to the next level!
+                    </p>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+    <!-- end slider section -->
+    
+    {% endblock slider %}
+
+{% block main %}
+
+
+  <!-- food section -->
+
+  <section class="food_section layout_padding-bottom">
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>
+          Players Option
+        </h2>
+      </div>
+      <ul class="filters_menu">
+        <li class="active" data-filter="*">All</li>
+        <li data-filter=".batsman">Batsman</li>
+        <li data-filter=".bowler">Bowler</li>
+        <li data-filter=".all-rounder">All-Rounder</li>
+      </ul>
+      
+        {% for i in list %}
+        <li data-filter=".{{i.Category_name}}">{{i.Category_name}}</li>
+        {% endfor %}
+      </ul>
+
+      <div class="filters-content">
+        <div class="row grid">
+          {% for j in items %}
+          <div class="col-sm-6 col-lg-4 all {{j.Category}}">
+            <div class="box">
+              <div>
+                <div class="img-box">
+                  <img src="/media/{{j.Image}}" alt="{{j.Image}}">
+                </div>
+                <div class="detail-box">
+                  <h5>
+                    {{j.Player_name}}  <!-- Change this from Item_name to Player_name -->
+                  </h5>
+                  <p>
+                    {{j.description}} <!-- Player description -->
+                  </p>
+                  <div class="options">
+                    <h6>
+                      Level: {{j.Player_level}} <!-- Or any other player-related info -->
+                    </h6>
+                    <a href="#">
+                      More Info
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>     
+          {% endfor %}
+        </div>
+      </div>
+      <div class="btn-box">
+        <a href="#">
+          View More Player Options
+        </a>
+      </div>
+      
+  </section>
+
+  <!-- end food section -->
+  
+  <!-- book section -->
+  <section class="register_section layout_padding">
+    <div class="container">
+        <div class="heading_container">
+            <h2>
+                Register for Academy
+            </h2>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form_container">
+                    <form action="{% url 'Register' %}" method="POST">{% csrf_token %}
+                        <div>
+                            <input type="text" class="form-control" name="user_name" required placeholder="Your Name" />
+                        </div>
+                        <div>
+                            <input type="text" class="form-control" name="phone_number" required placeholder="Phone Number" />
+                        </div>
+                        <div>
+                            <input type="email" class="form-control" name="user_email" placeholder="Your Email" />
+                        </div>
+                        <div>
+                            <select class="form-control nice-select wide" required name="skill_level">
+                                <option value="" disabled selected>
+                                    Select Your Skill Level
+                                </option>
+                                <option value="beginner">
+                                    Beginner
+                                </option>
+                                <option value="intermediate">
+                                    Intermediate
+                                </option>
+                                <option value="advanced">
+                                    Advanced
+                                </option>
+                            </select>
+                        </div>
+                        <div>
+                            <input type="date" required name="registration_date" class="form-control">
+                        </div>
+                        <div class="btn_box">
+                            <button>
+                                Register Now
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="map_container ">
+                    <div id="googleMap"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+  <!-- end book section -->
+
+  <!-- client section -->
+
+  <section class="client_section layout_padding-bottom">
+    <div class="container">
+      <div class="heading_container heading_center psudo_white_primary mb_45">
+        <h2>
+          What Says Our Players
+        </h2>
+      </div>
+      
+      <div class="carousel-wrap row ">
+        <div class="owl-carousel client_owl-carousel">
+          {% for k in review %}
+          <div class="item">
+            <div class="box">
+              <div class="detail-box">
+                <p>
+                  {{k.Description}}
+                </p>
+                <h6>
+                  {{k.User_name}}
+                </h6>
+                <p>
+                  Rating : {{k.Rating}}/5
+                </p>
+              </div>
+              <div class="img-box">
+                <img src="/media/{{k.Image}}" alt="{{k.Image}}" class="box-img">
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- end client section -->
+
+
+{% endblock main %}
