@@ -1,6 +1,11 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
-{% block content %}
+{% block class %}class="sub_page"{% endblock class %}
+{% block menu_status %}active{% endblock menu_status %}
+{% load static %}
+
+{% block main %}
+
 <div class="container mt-5">
     <div class="card mx-auto" style="width: 50%;">
         <!-- Displaying player image -->
@@ -9,13 +14,11 @@
             <h2 class="card-title">{{ player.full_name }}</h2>
             <p class="card-text"><strong>Address:</strong> {{ player.address }}</p>
             <p class="card-text"><strong>Phone Number:</strong> {{ player.phone_no }}</p>
-            <p class="card-text"><strong>Category:</strong> {{ player.category_name.category_role }}</p> <!-- Category from PlayerList -->
-
             {% if player.player_role %}
             <p class="card-text"><strong>Player Role:</strong> {{ player.player_role.player_role }}</p> <!-- Player Role from PlayerRole -->
             {% endif %}
 
-            <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+            {% comment %} <a href="{% url 'home' %}" class="btn btn-secondary">Back</a> {% endcomment %}
         </div>
     </div>
 </div>

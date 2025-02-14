@@ -40,7 +40,8 @@ class About(models.Model):
 class Feedback(models.Model):
     user_name = models.CharField(max_length=50)
     description = models.TextField(blank=False)
-    rating = models.IntegerField()
+    rating = models.IntegerField(null=True,blank=True)
+    image = models.ImageField(upload_to='player_images/', blank=True)
     
     def __str__(self):
         return f"{self.user_name} Review"

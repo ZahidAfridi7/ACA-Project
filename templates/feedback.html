@@ -11,25 +11,22 @@
     <div class="container">
       <div class="heading_container">
         <h2>
-          Register with us !
+          Give Us A Review!
         </h2>
       </div>
       <div class="row">
         <div class="col-md-6">
           <div class="form_container">
-            <form action="{% url "Register" %}" method='POST'>{% csrf_token %}
+            <form action="{% url 'Feedback' %}" method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
               <div>
                 <input type="text" class="form-control" name="user_name" required placeholder="Your Name" />
               </div>
               <div class="mb-3">
-                <textarea class="form-control" id="exampleFormControlTextarea1" name="Description" rows="3" required placeholder="Describe your experience here">
-                    Your review!
-
-                </textarea>
-                
+                <textarea class="form-control" name="description" rows="3" placeholder="Your review"></textarea>
               </div>
               <div>
-                <select class="form-control nice-select wide" required name="total_person">
+                <select class="form-control nice-select wide" required name="rating">
                   <option value="" disabled selected>
                     Please Give Us Rating?
                   </option>
@@ -52,8 +49,8 @@
               </div>
               <div>
                 <label for="formFileLg" class="form-label">Select Image</label>
-                <input class="form-control form-control-lg" id="formFileLg" type="file">
-              </div>
+                <input class="form-control form-control-lg" id="formFileLg" type="file" name="image"> <!-- Add 'name' attribute -->
+            </div>
               <div class="btn_box">
                 <button>
                   Submit

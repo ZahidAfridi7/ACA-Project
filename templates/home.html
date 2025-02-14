@@ -70,7 +70,7 @@
                   <div class="options">
                     <h6>
                       Mobile: {{j.phone_no}} 
-                    </h6>
+                    </h6> 
                     <a href="{% url 'player_detail' j.id %}" class="btn btn-primary">More</a>
                     </div>
                 </div>
@@ -81,117 +81,12 @@
         </div>
       </div>
       <div class="btn-box">
-        <a href="#">
+        <a href="{% url 'Players' %}">
           View More Player Options
         </a>
       </div>
       
   </section>
-
-  <!-- end food section -->
-  
-  <!-- book section -->
-  {% comment %} <!-- Registration Section -->
-<section class="register_section layout_padding">
-  <div class="container">
-      <div class="heading_container">
-          <h2>
-              Join Afridi Cricket Academy – Register Now!
-          </h2>
-      </div>
-      <div class="row">
-          <div class="col-md-6">
-              <div class="form_container">
-                  <form action="{% url 'Register' %}" method="POST" enctype="multipart/form-data">
-                      {% csrf_token %}
-                      
-                      <div>
-                          <input type="text" class="form-control" name="player_name" required placeholder="Player Name" />
-                      </div>
-
-                      <div>
-                          <input type="text" class="form-control" name="phone_number" required placeholder="Phone Number" />
-                      </div>
-
-                      <div>
-                          <input type="email" class="form-control" name="user_email" placeholder="Your Email" />
-                      </div>
-
-                      <div>
-                          <input type="text" class="form-control" name="address" required placeholder="Address" />
-                      </div>
-
-                      <div>
-                          <select class="form-control nice-select wide" required name="match_experience">
-                              <option value="" disabled selected>
-                                  How many matches have you played?
-                              </option>
-                              <option value="10">10 Matches</option>
-                              <option value="20">20 Matches</option>
-                              <option value="30">30 Matches</option>
-                              <option value="40+">40+ Matches</option>
-                          </select>
-                      </div>
-
-                      <div>
-                          <select class="form-control nice-select wide" required name="player_role">
-                              <option value="" disabled selected>Choose Your Role</option>
-                              <option value="Batsman">Batsman</option>
-                              <option value="Bowler">Bowler</option>
-                              <option value="All-Rounder">All-Rounder</option>
-                              <option value="Wicket-Keeper">Wicket-Keeper</option>
-                          </select>
-                      </div>
-
-                      <div>
-                          <select class="form-control nice-select wide" required name="skill_level">
-                              <option value="" disabled selected>
-                                  Select Your Skill Level
-                              </option>
-                              <option value="beginner">Beginner</option>
-                              <option value="intermediate">Intermediate</option>
-                              <option value="advanced">Advanced</option>
-                          </select>
-                      </div>
-
-                      <div>
-                          <label>Upload Your Image:</label>
-                          <input type="file" required name="player_image" class="form-control" accept="image/*">
-                      </div>
-
-                      <div>
-                          <label>Date of Birth:</label>
-                          <input type="date" required name="dob" class="form-control">
-                      </div>
-
-                      <div>
-                          <label>Registration Date:</label>
-                          <input type="date" required name="registration_date" class="form-control">
-                      </div>
-
-                      <div class="btn_box">
-                          <button type="submit">
-                              Register Now
-                          </button>
-                      </div>
-
-                  </form>
-              </div>
-          </div> {% endcomment %}
-
-          <div class="col-md-6">
-              <div class="map_container">
-                  <div id="googleMap"></div>
-              </div>
-          </div>
-      </div>
-  </div>
-</section>
-<!-- End Registration Section -->
-
-
-  <!-- end book section -->
-
   <!-- client section -->
 
   <section class="client_section layout_padding-bottom">
@@ -204,22 +99,29 @@
       
       <div class="carousel-wrap row ">
         <div class="owl-carousel client_owl-carousel">
-          {% for k in review %}
+          {% for k in reviews %}
           <div class="item">
             <div class="box">
               <div class="detail-box">
                 <p>
-                  {{k.Description}}
+                  {{k.description}}
                 </p>
                 <h6>
-                  {{k.User_name}}
+                  {{k.user_name}}
                 </h6>
                 <p>
-                  Rating : {{k.Rating}}/5
+                  Rating : {{k.rating}}/5
                 </p>
               </div>
               <div class="img-box">
-                <img src="/media/{{k.Image}}" alt="{{k.Image}}" class="box-img">
+                <div class="img-box">
+                  {% if k.image %}
+                      <img src="{{ k.image.url }}" alt="{{ k.user_name }}" class="box-img">
+                  {% else %}
+                      <img src="/static/aca.jpg" alt="No Image" class="box-img">
+                  {% endif %}
+              </div>
+              
               </div>
             </div>
           </div>

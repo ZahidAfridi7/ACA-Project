@@ -34,8 +34,6 @@
                                 <p>{{ j.address }}</p>
                                 <div class="options">
                                     <h6>{{ j.phone_no }}</h6>
-                                    <p>Player ID: {{ j.id }}</p>  <!-- Add this line to check the ID -->
-                                    <!-- Correct the "More" button link -->
                                     <a href="{% url 'player_detail' j.id %}" class="btn btn-primary">More</a>
                                 </div>
                             </div>
@@ -45,10 +43,6 @@
                 {% endfor %}
             </div>
         </div>
-
-        <!-- Optional View More Button -->
-        <div class="btn-box">
-            <a href="#">View More</a>
         </div>
     </div>
 </section>
